@@ -21,3 +21,9 @@ jobs:
         run: |
           mkdir -p docs/api
           doxygen Doxyfile
+      - name: Upload API documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs
+          path: docs/api/html/
+          if-no-files-found: error

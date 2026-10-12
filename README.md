@@ -1,5 +1,13 @@
 # Shapes Demo
 
+[![C++ CI](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/ci.yml)
+![C++20](https://img.shields.io/badge/C%2B%2B-20-blue?logo=cplusplus)
+![CMake 3.20+](https://img.shields.io/badge/CMake-3.20%2B-064F8C?logo=cmake)
+![Tests: GoogleTest](https://img.shields.io/badge/tests-GoogleTest-4285F4?logo=google)
+![Sanitizers: ASan | LSan | UBSan](https://img.shields.io/badge/sanitizers-ASan%20%7C%20LSan%20%7C%20UBSan-orange)
+![Static analysis: clang-tidy](https://img.shields.io/badge/static%20analysis-clang--tidy-262D3A?logo=llvm)
+![Docs: Doxygen](https://img.shields.io/badge/docs-Doxygen-2C4AA8)
+
 A small C++20 library that models circles and triangles through a shared `Shape` interface. Constructors reject non-finite or non-positive dimensions, and triangles also enforce the triangle inequality.
 
 ## Build and test

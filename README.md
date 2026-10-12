@@ -9,6 +9,13 @@
 
 A small C++20 library that models circles and triangles through a shared `Shape` interface. Constructors reject non-finite or non-positive dimensions, and triangles also enforce the triangle inequality.
 
+## CI status
+
+- [![Tests](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/tests.yml/badge.svg)](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/tests.yml) — Builds the library and runs the GoogleTest suite with `ctest`.
+- [![Static Analysis](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/static-analysis.yml) — Runs clang-tidy over the library sources using the checks in `.clang-tidy`.
+- [![Memory Check](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/memory-check.yml/badge.svg)](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/memory-check.yml) — Runs the tests under AddressSanitizer, LeakSanitizer, and UndefinedBehaviorSanitizer; fails on any leak or memory error.
+- [![Documentation](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/docs.yml/badge.svg)](https://github.com/rajeshsola/cpp-ci-demo/actions/workflows/docs.yml) — Generates the Doxygen API docs; any Doxygen warning fails the build.
+
 ## Build and test
 
 Requirements: CMake 3.20+, a C++20 compiler, and network access on the first configure so CMake can fetch GoogleTest.

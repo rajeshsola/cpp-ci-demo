@@ -50,7 +50,7 @@ if(SHAPES_BUILD_TESTS)
         string(REGEX MATCH "[0-9]+\\.[0-9]+" LCOV_VERSION "${LCOV_VERSION_OUTPUT}")
         set(LCOV_EXTRA_ARGS "")
         if(LCOV_VERSION VERSION_GREATER_EQUAL 2.0)
-            set(LCOV_EXTRA_ARGS --ignore-errors mismatch,unused)
+            set(LCOV_EXTRA_ARGS --ignore-errors mismatch,unused,inconsistent)
         endif()
 
         set(COVERAGE_INFO ${CMAKE_BINARY_DIR}/coverage.info)

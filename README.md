@@ -40,7 +40,7 @@ Install Doxygen, then run `doxygen Doxyfile`. The HTML API reference is generate
 
 ## UML
 
-The class diagram source is [diagrams/shapes.puml](diagrams/shapes.puml). Render it with PlantUML using `plantuml -tpng diagrams/shapes.puml`.
+The class diagram source is [uml/shapes.puml](uml/shapes.puml). Render it with PlantUML using `plantuml -tpng diagrams/shapes.puml`.
 
 ## Continuous integration
 

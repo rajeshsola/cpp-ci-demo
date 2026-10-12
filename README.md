@@ -42,6 +42,11 @@ Install Doxygen, then run `doxygen Doxyfile`. The HTML API reference is generate
 
 The class diagram source is [uml/shapes.puml](uml/shapes.puml). Render it with PlantUML using `plantuml -tpng diagrams/shapes.puml`.
 
+You can render an UML Diagram like this
+
+![Alt text](file:///uml/shapes.png "Shapes Demo")
+
+
 ## Continuous integration
 
 GitHub Actions runs GoogleTest, sanitizer-backed memory checks, `clang-tidy` static analysis, and a Doxygen generation check on pushes and pull requests.

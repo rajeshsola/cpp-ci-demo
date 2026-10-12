@@ -1,0 +1,4 @@
+Checks: 'clang-analyzer-*,bugprone-*,performance-*'
+WarningsAsErrors: '*'
+HeaderFilterRegex: 'include/shapes/.*'
+FormatStyle: file

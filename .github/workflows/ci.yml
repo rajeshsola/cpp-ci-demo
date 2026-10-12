@@ -1,0 +1,60 @@
+name: C++ CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: GoogleTest
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  memory-check:
+    name: Address and leak sanitizers
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure with sanitizers
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSHAPES_ENABLE_SANITIZERS=ON
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Run tests with leak detection
+        env:
+          ASAN_OPTIONS: detect_leaks=1:strict_string_checks=1
+          UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+        run: ctest --test-dir build --output-on-failure
+
+  static-analysis:
+    name: clang-tidy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-tidy
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang-tidy
+      - name: Analyze library sources
+        run: clang-tidy src/circle.cpp src/triangle.cpp -- -std=c++20 -Iinclude
+
+  documentation:
+    name: Doxygen API documentation
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes doxygen
+      - name: Generate API documentation
+        run: doxygen Doxyfile

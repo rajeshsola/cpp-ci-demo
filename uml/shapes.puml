@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Shape {
+    +area() double
+    +perimeter() double
+    +name() string_view
+}
+
+class Circle {
+    -radius_ : double
+    +Circle(radius : double)
+    +area() double
+    +perimeter() double
+    +name() string_view
+    +radius() double
+}
+
+class Triangle {
+    -side_a_ : double
+    -side_b_ : double
+    -side_c_ : double
+    +Triangle(side_a : double, side_b : double, side_c : double)
+    +area() double
+    +perimeter() double
+    +name() string_view
+}
+
+Shape <|.. Circle
+Shape <|.. Triangle
+@enduml

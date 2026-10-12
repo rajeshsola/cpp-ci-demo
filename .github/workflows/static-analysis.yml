@@ -1,0 +1,21 @@
+name: Static Analysis
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-analysis:
+    name: clang-tidy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-tidy
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang-tidy
+      - name: Analyze library sources
+        run: clang-tidy src/circle.cpp src/triangle.cpp -- -std=c++20 -Iinclude

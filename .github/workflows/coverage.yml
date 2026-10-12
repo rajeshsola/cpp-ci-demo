@@ -1,0 +1,38 @@
+name: Coverage
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    name: lcov coverage report
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
+      - name: Configure with coverage
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSHAPES_ENABLE_COVERAGE=ON
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Run tests and generate coverage
+        run: cmake --build build --target coverage
+      - name: Add coverage summary
+        run: |
+          {
+            echo '### Coverage'
+            echo '```'
+            lcov --summary build/coverage.info 2>&1 | grep -E 'lines|functions'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            build/coverage.info
+            build/coverage/

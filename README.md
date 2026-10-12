@@ -44,7 +44,7 @@ The class diagram source is [uml/shapes.puml](uml/shapes.puml). Render it with P
 
 You can render an UML Diagram like this
 
-![Alt text](file:///uml/shapes.png "Shapes Demo")
+![Alt text](uml/shapes.png "Shapes Demo")
 
 
 ## Continuous integration
